@@ -53,7 +53,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * This filter intercepts the parameters sent by the client and cleans them up based on some
  * rules defined in a config file. This means any web application that sits behind this
- * filter can assume that the param object contains sanatised values.
+ * filter can assume that the param object contains sanitised values.
  *
  * @author mcasperson
  */
@@ -194,7 +194,7 @@ public class ParameterValidationFilter implements Filter {
         catch (final ValidationFailedException ex) {
             // Stop processing and return a HTTP error code if we are enforcing the rules
             if (parameterValidationDefinitions != null && parameterValidationDefinitions.getEnforcingMode()) {
-                respondWithBadRequest(response);
+                handleBadRequest(ex, request, response);
                 return;
             }
         }
@@ -229,9 +229,23 @@ public class ParameterValidationFilter implements Filter {
     }
 
     /**
+     * Return with a status code of 400, Override the method to control how we handle invalid parameter validation!
+     *
+     * @param exception thrown as part of validating parameters
+     * @param request Http servlet request
+     * @param response Http servlet response
+     */
+    protected void handleBadRequest(final ValidationFailedException exception,
+                                    final ServletRequest request,
+                                    final ServletResponse response) {
+
+        respondWithBadRequest(response);
+    }
+
+    /**
      * Return with a status code of 400
      *
-     * @param response The servlet request
+     * @param response The servlet response
      */
     private void respondWithBadRequest(final ServletResponse response) {
 
