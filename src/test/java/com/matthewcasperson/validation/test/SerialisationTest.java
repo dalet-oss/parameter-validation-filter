@@ -26,9 +26,6 @@ package com.matthewcasperson.validation.test;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 import com.matthewcasperson.validation.exception.InvalidConfigurationException;
 import com.matthewcasperson.validation.ruledefinitionimpl.ParameterValidationChain;
 import com.matthewcasperson.validation.ruledefinitionimpl.ParameterValidationDefinitionImpl;
@@ -37,6 +34,12 @@ import com.matthewcasperson.validation.ruleimpl.FailIfNotRegexMatchValidationRul
 import com.matthewcasperson.validation.utils.SerialisationUtils;
 import com.matthewcasperson.validation.utilsimpl.JaxBSerialisationUtilsImpl;
 import com.matthewcasperson.validation.utilsimpl.SerialisationUtilsImpl;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.fail;
+
 
 /**
  * Tests of the serialisation methods
@@ -53,7 +56,7 @@ public class SerialisationTest {
 		final Foo foo = new Foo("bar");
 		final String xml = SERIALISATION_UTILS.writeToXML(foo, Foo.class);
 		final Foo foo2 = SERIALISATION_UTILS.readFromXML(xml, Foo.class);
-		Assert.assertEquals(foo.getBar(), foo2.getBar());
+		assertEquals(foo.getBar(), foo2.getBar());
 	}
 
 	@Test
@@ -61,7 +64,7 @@ public class SerialisationTest {
 		final Foo foo = new Foo("bar");
 		final String xml = SERIALISATION_UTILS.writeToXML(foo, Foo.class);
 		final String foo2 = SERIALISATION_UTILS.readFromXML(xml, String.class);
-		Assert.assertNull(foo2);
+		assertNull(foo2);
 	}
 
 	@Test
@@ -87,14 +90,14 @@ public class SerialisationTest {
 
 		final ParameterValidationDefinitionsImpl conatiner2 = SERIALISATION_UTILS.readFromXML(xml, ParameterValidationDefinitionsImpl.class);
 
-		Assert.assertEquals(conatiner.getParameterValidationDefinitions().get(0).getParamNamePattern().pattern(),
+		assertEquals(conatiner.getParameterValidationDefinitions().get(0).getParamNamePattern().pattern(),
 				conatiner2.getParameterValidationDefinitions().get(0).getParamNamePattern().pattern());
 
 		try {
-			Assert.assertEquals(conatiner.getParameterValidationDefinitions().get(0).getList().get(0).getRule().getClass().getName(),
+			assertEquals(conatiner.getParameterValidationDefinitions().get(0).getList().get(0).getRule().getClass().getName(),
 					conatiner2.getParameterValidationDefinitions().get(0).getList().get(0).getRule().getClass().getName());
 			} catch (final InvalidConfigurationException ex) {
-				Assert.fail();
+				fail();
 			}
 	}
 
@@ -103,7 +106,7 @@ public class SerialisationTest {
 		final Foo foo = new Foo("bar");
 		final String xml = JAXB_SERIALISATION_UTILS.writeToXML(foo, Foo.class);
 		final Foo foo2 = JAXB_SERIALISATION_UTILS.readFromXML(xml, Foo.class);
-		Assert.assertEquals(foo.getBar(), foo2.getBar());
+		assertEquals(foo.getBar(), foo2.getBar());
 	}
 
 	@Test
@@ -111,7 +114,7 @@ public class SerialisationTest {
 		final Foo foo = new Foo("bar");
 		final String xml = JAXB_SERIALISATION_UTILS.writeToXML(foo, Foo.class);
 		final String foo2 = JAXB_SERIALISATION_UTILS.readFromXML(xml, String.class);
-		Assert.assertNull(foo2);
+		assertNull(foo2);
 	}
 
 	@Test
@@ -141,14 +144,14 @@ public class SerialisationTest {
 
 		final ParameterValidationDefinitionsImpl conatiner2 = JAXB_SERIALISATION_UTILS.readFromXML(xml, ParameterValidationDefinitionsImpl.class, ParameterValidationDefinitionImpl.class);
 
-		Assert.assertEquals(conatiner.getParameterValidationDefinitions().get(0).getParamNamePattern().pattern(),
+		assertEquals(conatiner.getParameterValidationDefinitions().get(0).getParamNamePattern().pattern(),
 				conatiner2.getParameterValidationDefinitions().get(0).getParamNamePattern().pattern());
 
 		try {
-		Assert.assertEquals(conatiner.getParameterValidationDefinitions().get(0).getList().get(0).getRule().getClass().getName(),
+		assertEquals(conatiner.getParameterValidationDefinitions().get(0).getList().get(0).getRule().getClass().getName(),
 				conatiner2.getParameterValidationDefinitions().get(0).getList().get(0).getRule().getClass().getName());
 		} catch (final InvalidConfigurationException ex) {
-			Assert.fail();
+			fail();
 		}
 	}
 
@@ -183,10 +186,10 @@ public class SerialisationTest {
 		final ParameterValidationDefinitionsImpl conatiner2 = JAXB_SERIALISATION_UTILS.readFromXML(xml, ParameterValidationDefinitionsImpl.class, ParameterValidationDefinitionImpl.class);
 
 		try {
-		Assert.assertEquals(((FailIfNotRegexMatchValidationRule)conatiner.getParameterValidationDefinitions().get(0).getList().get(0).getRule()).getPattern().toString(),
+		assertEquals(((FailIfNotRegexMatchValidationRule)conatiner.getParameterValidationDefinitions().get(0).getList().get(0).getRule()).getPattern().toString(),
 				((FailIfNotRegexMatchValidationRule)conatiner2.getParameterValidationDefinitions().get(0).getList().get(0).getRule()).getPattern().toString());
 		} catch (final InvalidConfigurationException ex) {
-			Assert.fail();
+			fail();
 		}
 	}
 }

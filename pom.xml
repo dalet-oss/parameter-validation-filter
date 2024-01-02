@@ -52,33 +52,22 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
-        <apacheCommonsIO.version>2.4</apacheCommonsIO.version>
-        <apacheCommonsLang.version>3.0</apacheCommonsLang.version>
+        <apacheCommonsIO.version>2.15.1</apacheCommonsIO.version>
+        <apacheCommonsLang.version>3.14.0</apacheCommonsLang.version>
         <esapi.version>2.1.0</esapi.version>
-        <guava.version>14.0.1</guava.version>
-        <jackson.version>1.9.13</jackson.version>
+        <guava.version>33.0.0-jre</guava.version>
         <jspApi.version>2.0</jspApi.version>
         <owaspHtmlSanitizer.version>r239</owaspHtmlSanitizer.version>
         <servlet.version>3.1.0</servlet.version>
         <slf4j.version>1.7.36</slf4j.version>
-        <spring.version>4.1.0.RELEASE</spring.version>
 
         <mockito.version>4.11.0</mockito.version>
-        <testNg.version>6.0.1</testNg.version>
-        <jacoco.version>0.7.2.201409121644</jacoco.version>
 
         <revision>DEV</revision>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-framework-bom</artifactId>
-                <version>${spring.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
@@ -98,14 +87,15 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.owasp.esapi</groupId>
             <artifactId>esapi</artifactId>
             <version>${esapi.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -138,25 +128,6 @@
             </exclusions>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework</groupId>-->
-<!--            <artifactId>spring-beans</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework</groupId>-->
-<!--            <artifactId>spring-context</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.reflections</groupId>-->
-<!--            <artifactId>reflections</artifactId>-->
-<!--            <version>0.9.9</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.arangodb</groupId>-->
-<!--            <artifactId>arangodb-spring-data</artifactId>-->
-<!--            <version>3.2.1</version>-->
-<!--        </dependency>-->
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -185,8 +156,8 @@
 
         <!-- Test -->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -194,35 +165,6 @@
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testNg.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-
-<!--        <dependency>-->
-<!--            <groupId>org.junit.jupiter</groupId>-->
-<!--            <artifactId>junit-jupiter-api</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.mockito</groupId>-->
-<!--            <artifactId>mockito-core</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.mockito</groupId>-->
-<!--            <artifactId>mockito-junit-jupiter</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.assertj</groupId>-->
-<!--            <artifactId>assertj-core</artifactId>-->
-<!--            <version>3.24.2</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>log4j-over-slf4j</artifactId>

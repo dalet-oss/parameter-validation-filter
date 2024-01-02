@@ -27,10 +27,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.matthewcasperson.validation.ruleimpl.*;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import com.matthewcasperson.validation.exception.ValidationFailedException;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 public class ValidationRulesTests {
@@ -39,9 +41,9 @@ public class ValidationRulesTests {
 	public void testTrim() {
 		try {
 			final TrimTextValidationRule rule = new TrimTextValidationRule();
-			Assert.assertEquals("trimmed", rule.fixParam("test", "test", "  trimmed   "));
+			assertEquals("trimmed", rule.fixParam("test", "test", "  trimmed   "));
 		} catch (final ValidationFailedException ex) {
-			Assert.fail();
+			fail();
 		}
 	}
 
@@ -49,11 +51,11 @@ public class ValidationRulesTests {
 	public void testEncode2() {
 		try {
 			final HTMLEncodeTextValidationRule rule = new HTMLEncodeTextValidationRule();
-			Assert.assertEquals(
+			assertEquals(
 					"&lt;script&gt;doSomethningEvil();&lt;/script&gt;",
 					rule.fixParam("test", "test", "<script>doSomethningEvil();</script>"));
 		} catch (final ValidationFailedException ex) {
-			Assert.fail();
+			fail();
 		}
 	}
 
@@ -61,14 +63,14 @@ public class ValidationRulesTests {
 	public void testEncode3() {
 		try {
 			final CanonicalizeTextValidationRule rule = new CanonicalizeTextValidationRule();
-			Assert.assertEquals(
+			assertEquals(
 					"<script>doSomethningEvil();</script>",
 					rule.fixParam("test", "test", "&lt;script&gt;doSomethningEvil();&lt;/script&gt;"));
-			Assert.assertEquals(
+			assertEquals(
 					"<script>doSomethningEvil();</script>",
 					rule.fixParam("test", "test", "%26lt%3Bscript%26gt%3BdoSomethningEvil()%3B%26lt%3B%2Fscript%26gt%3B"));
 		} catch (final ValidationFailedException ex) {
-			Assert.fail();
+			fail();
 		}
 	}
 
@@ -81,11 +83,11 @@ public class ValidationRulesTests {
 			final String testString = "hi&nbsp;there";
 			final HTMLEncodeTextValidationRule rule1 = new HTMLEncodeTextValidationRule();
 			final CanonicalizeTextValidationRule rule2 = new CanonicalizeTextValidationRule();
-			Assert.assertEquals(
+			assertEquals(
 					testString,
 					rule1.fixParam("test", "test", rule2.fixParam("test", "test", testString)));
 		} catch (final ValidationFailedException ex) {
-			Assert.fail();
+			fail();
 		}
 	}
 
@@ -96,11 +98,11 @@ public class ValidationRulesTests {
 			final String testString = "Please Choose&hellip;";
 			final HTMLEncodeTextValidationRule rule1 = new HTMLEncodeTextValidationRule();
 			final CanonicalizeTextValidationRule rule2 = new CanonicalizeTextValidationRule();
-			Assert.assertEquals(
+			assertEquals(
 					testString,
 					rule1.fixParam("test", "test", rule2.fixParam("test", "test", testString)));
 		} catch (final ValidationFailedException ex) {
-			Assert.fail();
+			fail();
 		}
 	}
 
@@ -110,11 +112,11 @@ public class ValidationRulesTests {
 			final String testString = "&quot;test&quot;";
 			final HTMLEncodeTextValidationRule rule1 = new HTMLEncodeTextValidationRule();
 			final CanonicalizeTextValidationRule rule2 = new CanonicalizeTextValidationRule();
-			Assert.assertEquals(
+			assertEquals(
 					testString,
 					rule1.fixParam("test", "test", rule2.fixParam("test", "test", testString)));
 		} catch (final ValidationFailedException ex) {
-			Assert.fail();
+			fail();
 		}
 	}
 
@@ -124,7 +126,7 @@ public class ValidationRulesTests {
 
 		try {
 			rule.fixParam("test", "test", "me & you");
-			Assert.fail();
+			fail();
 		} catch (final ValidationFailedException ex) {
 
 		}
@@ -133,7 +135,7 @@ public class ValidationRulesTests {
 			rule.fixParam("test", "test", "18511762");
 
 		} catch (final ValidationFailedException ex) {
-			Assert.fail();
+			fail();
 		}
 
 		/*
@@ -143,7 +145,7 @@ public class ValidationRulesTests {
 			//	Although you can't see it, the spaces in this string are non-breaking.
 			//	There is no reason why someone should be trying in a non-breaking space.
 			rule.fixParam("test", "test", "MR David Arnold");
-			Assert.fail();
+			fail();
 		} catch (final ValidationFailedException ex) {
 
 		}
@@ -152,19 +154,19 @@ public class ValidationRulesTests {
 			rule.fixParam("test", "test", "o'neil");
 
 		} catch (final ValidationFailedException ex) {
-			Assert.fail();
+			fail();
 		}
 
 		try {
 			rule.fixParam("test", "test", "IÁNSON");
-			Assert.fail();
+			fail();
 		} catch (final ValidationFailedException ex) {
 
 		}
 
 		try {
 			rule.fixParam("test", "test", "O’brien");
-			Assert.fail();
+			fail();
 		} catch (final ValidationFailedException ex) {
 
 		}*/
@@ -181,7 +183,7 @@ public class ValidationRulesTests {
 			rule.fixParam("test", "test", "me & you");
 
 		} catch (final ValidationFailedException ex) {
-			Assert.fail();
+			fail();
 		}
 
 	}
@@ -197,7 +199,7 @@ public class ValidationRulesTests {
 			rule.fixParam("test", "test", "Samàntha");
 
 		} catch (final ValidationFailedException ex) {
-			Assert.fail();
+			fail();
 		}
 
 	}
@@ -213,7 +215,7 @@ public class ValidationRulesTests {
 			rule.fixParam("test", "test", "1\33");
 
 		} catch (final ValidationFailedException ex) {
-			Assert.fail();
+			fail();
 		}
 
 	}
@@ -228,7 +230,7 @@ public class ValidationRulesTests {
 
 		try {
 			rule.fixParam("test", "test", "invalid");
-			Assert.fail();
+			fail();
 		} catch (final ValidationFailedException ex) {
 
 		}
@@ -237,7 +239,7 @@ public class ValidationRulesTests {
 			rule.fixParam("test", "test", "VALID");
 
 		} catch (final ValidationFailedException ex) {
-			Assert.fail();
+			fail();
 		}
 	}
 
@@ -246,7 +248,7 @@ public class ValidationRulesTests {
 		final NumbersOnlyValidationRule rule = new NumbersOnlyValidationRule();
 
 		try {
-			Assert.assertEquals(
+			assertEquals(
 					"123456",
 					rule.fixParam("test", "test", "a123b456c"));
 		} catch (final ValidationFailedException ex) {
@@ -262,7 +264,7 @@ public class ValidationRulesTests {
 		rule.configure(settings);
 
 		try {
-			Assert.assertEquals(
+			assertEquals(
 					"This should be kept",
 					rule.fixParam("test", "test", "<!-- I am an invalid comment -->This should be kept<!-- I am a second invalid comment -->"));
 		} catch (final ValidationFailedException ex) {
@@ -275,7 +277,7 @@ public class ValidationRulesTests {
 		final SanitizeHTMLValidationRule rule = new SanitizeHTMLValidationRule();
 
 		try {
-			Assert.assertEquals(
+			assertEquals(
 					rule.fixParam("test", "test", "<script>doEvil();</script><div>div contents</div><a href=\"http://example.org\">link</a><a onclick=\"javascript:alert('Oh Noes!!!!')\">Bad Link</a>"),
 					"<div>div contents</div>linkBad Link");
 		} catch (final ValidationFailedException ex) {
@@ -291,7 +293,7 @@ public class ValidationRulesTests {
         rule.configure(settings);
 
         try {
-            Assert.assertEquals(
+            assertEquals(
                 rule.fixParam(
                     "test",
                     "test",
@@ -310,7 +312,7 @@ public class ValidationRulesTests {
         rule.configure(settings);
 
         try {
-            Assert.assertEquals(
+            assertEquals(
                     rule.fixParam(
                             "test",
                             "test",
@@ -326,7 +328,7 @@ public class ValidationRulesTests {
 		final ReplaceNonBreakingSpaceWithSpaceValidationRule rule = new ReplaceNonBreakingSpaceWithSpaceValidationRule();
 
 		try {
-			Assert.assertEquals(
+			assertEquals(
 					rule.fixParam("test", "test", "Hi&nbsp;there\u00A0you&#160;1&#xa0;2"),
 					"Hi there you 1 2");
 		} catch (final ValidationFailedException ex) {
