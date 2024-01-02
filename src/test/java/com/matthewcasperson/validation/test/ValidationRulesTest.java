@@ -35,7 +35,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 
-public class ValidationRulesTests {
+public class ValidationRulesTest {
 
 	@Test
 	public void testTrim() {
