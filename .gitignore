@@ -1,10 +1,9 @@
 /bin/
 /build/
-/.gradle/
 /.settings/
 /test-output/
-/local_build.gradle
 .DS_Store
 /.idea/
 *.iml
 *.gpg
+target
