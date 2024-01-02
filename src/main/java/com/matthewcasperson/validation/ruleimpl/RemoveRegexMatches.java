@@ -16,7 +16,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * for custom sanitisation.
  *
  * @author mcasperson
- *
  */
 public class RemoveRegexMatches extends ParameterValidationRuleTemplate {
 	private static final String PATTERN_KEY_NAME = "pattern";
@@ -33,16 +32,12 @@ public class RemoveRegexMatches extends ParameterValidationRuleTemplate {
 
 	/**
 	 *
-	 * @param pattern
-	 *            The pattern compiled from the supplied settings
+	 * @param pattern The pattern compiled from the supplied settings
 	 */
 	public void setPattern(final Pattern pattern) {
 		this.pattern = pattern;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void configure(final Map<String, String> settings) {
 		pattern = Pattern.compile(settings.get(PATTERN_KEY_NAME));
 	}
@@ -55,7 +50,6 @@ public class RemoveRegexMatches extends ParameterValidationRuleTemplate {
 		checkArgument(!url.trim().isEmpty());
 		checkNotNull(params);
 		checkArgument(params.length != 0, "PVF-BUG-0003: params should always have at least one value");
-
 
 		final String[] retValues = new String[params.length];
 
@@ -84,7 +78,6 @@ public class RemoveRegexMatches extends ParameterValidationRuleTemplate {
 		}
 
 		return retValues;
-
 	}
 
 }

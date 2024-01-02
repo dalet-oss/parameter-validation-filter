@@ -53,7 +53,7 @@
 
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
         <apacheCommonsIO.version>2.15.1</apacheCommonsIO.version>
-        <apacheCommonsLang.version>3.14.0</apacheCommonsLang.version>
+        <apacheCommonsText.version>1.11.0</apacheCommonsText.version>
         <esapi.version>2.1.0</esapi.version>
         <guava.version>33.0.0-jre</guava.version>
         <jspApi.version>2.0</jspApi.version>
@@ -109,8 +109,8 @@
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${apacheCommonsLang.version}</version>
+            <artifactId>commons-text</artifactId>
+            <version>${apacheCommonsText.version}</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>

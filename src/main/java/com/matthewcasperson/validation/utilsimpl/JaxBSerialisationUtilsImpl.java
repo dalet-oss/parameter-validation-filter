@@ -21,21 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package com.matthewcasperson.validation.utilsimpl;
 
+import com.matthewcasperson.validation.utils.SerialisationUtils;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-
 import static com.google.common.base.Preconditions.checkNotNull;
-
-import com.matthewcasperson.validation.utils.SerialisationUtils;
 
 /**
  * Implementation of the serialisation util interface using JAXB
@@ -44,9 +42,6 @@ import com.matthewcasperson.validation.utils.SerialisationUtils;
  */
 public class JaxBSerialisationUtilsImpl implements SerialisationUtils {
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public <T> String writeToXML(final T object, final Class<T> klass, final Class<?>... additionalClasses) {
 		checkNotNull(object);
@@ -75,9 +70,6 @@ public class JaxBSerialisationUtilsImpl implements SerialisationUtils {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T readFromXML(final String xml, final Class<T> klass, final Class<?>... additionalClasses) {

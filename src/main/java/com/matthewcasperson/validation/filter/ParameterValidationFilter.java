@@ -21,12 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package com.matthewcasperson.validation.filter;
 
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.List;
+import com.matthewcasperson.validation.exception.ValidationFailedException;
+import com.matthewcasperson.validation.rule.ParameterValidationRule;
+import com.matthewcasperson.validation.ruledefinitionimpl.ParameterValidationChain;
+import com.matthewcasperson.validation.ruledefinitionimpl.ParameterValidationDefinitionImpl;
+import com.matthewcasperson.validation.ruledefinitionimpl.ParameterValidationDefinitionsImpl;
+import com.matthewcasperson.validation.utils.SerialisationUtils;
+import com.matthewcasperson.validation.utilsimpl.JaxBSerialisationUtilsImpl;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -36,20 +41,13 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Enumeration;
+import java.util.List;
 
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.IOUtils;
-
-import com.matthewcasperson.validation.exception.ValidationFailedException;
-import com.matthewcasperson.validation.rule.ParameterValidationRule;
-import com.matthewcasperson.validation.ruledefinitionimpl.ParameterValidationChain;
-import com.matthewcasperson.validation.ruledefinitionimpl.ParameterValidationDefinitionImpl;
-import com.matthewcasperson.validation.ruledefinitionimpl.ParameterValidationDefinitionsImpl;
-import com.matthewcasperson.validation.utils.SerialisationUtils;
-import com.matthewcasperson.validation.utilsimpl.JaxBSerialisationUtilsImpl;
-
-import static com.google.common.base.Preconditions.checkState;
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 
 /**
@@ -265,7 +263,7 @@ public class ParameterValidationFilter implements Filter {
             final String configFile = config.getInitParameter(CONFIG_PARAMETER_NAME);
             if (configFile != null) {
                 log.debug("Attempting to unmarshall " + configFile);
-                final String configXml = IOUtils.toString(config.getServletContext().getResourceAsStream(configFile));
+                final String configXml = IOUtils.toString(config.getServletContext().getResourceAsStream(configFile), StandardCharsets.UTF_8);
                 log.debug("configXml is \n" + configXml);
                 parameterValidationDefinitions = SERIALISATION_UTILS.readFromXML(configXml, ParameterValidationDefinitionsImpl.class);
             }

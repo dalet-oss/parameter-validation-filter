@@ -21,16 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package com.matthewcasperson.validation.ruleimpl;
-
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import org.apache.commons.lang3.StringEscapeUtils;
 
 import com.matthewcasperson.validation.exception.ValidationFailedException;
 import com.matthewcasperson.validation.rule.ParameterValidationRuleTemplate;
+import org.apache.commons.text.StringEscapeUtils;
+
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 
 /**

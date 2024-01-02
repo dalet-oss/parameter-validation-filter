@@ -23,20 +23,19 @@
  */
 package com.matthewcasperson.validation.rule;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
-
-import java.util.Arrays;
-import java.util.Map;
+import com.matthewcasperson.validation.exception.ValidationFailedException;
+import com.matthewcasperson.validation.utils.RequestParameterUtils;
+import com.matthewcasperson.validation.utilsimpl.RequestParameterUtilsImpl;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+import java.util.Arrays;
+import java.util.Map;
 
-import com.matthewcasperson.validation.exception.ValidationFailedException;
-import com.matthewcasperson.validation.utils.RequestParameterUtils;
-import com.matthewcasperson.validation.utilsimpl.RequestParameterUtilsImpl;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 
 /**

@@ -23,9 +23,6 @@
  */
 package com.matthewcasperson.validation.test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.matthewcasperson.validation.exception.InvalidConfigurationException;
 import com.matthewcasperson.validation.ruledefinitionimpl.ParameterValidationChain;
 import com.matthewcasperson.validation.ruledefinitionimpl.ParameterValidationDefinitionImpl;
@@ -35,6 +32,9 @@ import com.matthewcasperson.validation.utils.SerialisationUtils;
 import com.matthewcasperson.validation.utilsimpl.JaxBSerialisationUtilsImpl;
 import com.matthewcasperson.validation.utilsimpl.SerialisationUtilsImpl;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;

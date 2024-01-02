@@ -23,14 +23,13 @@
  */
 package com.matthewcasperson.validation.ruleimpl;
 
+import com.matthewcasperson.validation.exception.ValidationFailedException;
+import com.matthewcasperson.validation.rule.ParameterValidationRuleTemplate;
 import org.owasp.esapi.Encoder;
 import org.owasp.esapi.reference.DefaultEncoder;
 
-import com.matthewcasperson.validation.exception.ValidationFailedException;
-import com.matthewcasperson.validation.rule.ParameterValidationRuleTemplate;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * A validation rule to unencode a value. Sending through pre-encoded values is often a sign

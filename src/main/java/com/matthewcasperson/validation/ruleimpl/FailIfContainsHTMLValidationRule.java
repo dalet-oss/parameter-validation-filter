@@ -25,7 +25,7 @@ package com.matthewcasperson.validation.ruleimpl;
 
 import com.matthewcasperson.validation.exception.ValidationFailedException;
 import com.matthewcasperson.validation.rule.ParameterValidationRuleTemplate;
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 
 import java.text.Normalizer;
 import java.util.Map;
@@ -50,9 +50,6 @@ public class FailIfContainsHTMLValidationRule extends ParameterValidationRuleTem
 	private boolean allowAccents = false;
     private boolean allowEllipsis = false;
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public void configure(final Map<String, String> settings) {
 		if (settings.containsKey(ALLOW_AMPERSANDS)) {
 			allowAmpersands = Boolean.parseBoolean(settings.get(ALLOW_AMPERSANDS));
@@ -67,9 +64,6 @@ public class FailIfContainsHTMLValidationRule extends ParameterValidationRuleTem
         }
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public String[] fixParams(final String name, final String url, final String[] params) throws ValidationFailedException {
 		checkNotNull(name);

@@ -23,13 +23,21 @@
  */
 package com.matthewcasperson.validation.test;
 
+import com.matthewcasperson.validation.exception.ValidationFailedException;
+import com.matthewcasperson.validation.ruleimpl.CanonicalizeTextValidationRule;
+import com.matthewcasperson.validation.ruleimpl.FailIfContainsHTMLValidationRule;
+import com.matthewcasperson.validation.ruleimpl.FailIfNotCanonicalizedValidationRule;
+import com.matthewcasperson.validation.ruleimpl.FailIfNotRegexMatchValidationRule;
+import com.matthewcasperson.validation.ruleimpl.HTMLEncodeTextValidationRule;
+import com.matthewcasperson.validation.ruleimpl.NumbersOnlyValidationRule;
+import com.matthewcasperson.validation.ruleimpl.RemoveRegexMatches;
+import com.matthewcasperson.validation.ruleimpl.ReplaceNonBreakingSpaceWithSpaceValidationRule;
+import com.matthewcasperson.validation.ruleimpl.SanitizeHTMLValidationRule;
+import com.matthewcasperson.validation.ruleimpl.TrimTextValidationRule;
+import org.junit.jupiter.api.Test;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import com.matthewcasperson.validation.ruleimpl.*;
-
-import com.matthewcasperson.validation.exception.ValidationFailedException;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
