@@ -18,7 +18,7 @@ fi
 VERSION=$(echo $VERSION | sed 's#release/##g')
 echo "Publishing version: ${VERSION}"
 
-status=$(curl -s --head -w %{http_code} -o /dev/null https://repo1.maven.org/maven2/com/github/dalet-oss/arangobee/${VERSION}/)
+status=$(curl -s --head -w %{http_code} -o /dev/null https://repo1.maven.org/maven2/com/github/dalet-oss/parameter-validation-filter/${VERSION}/)
 if [ $status -eq 200 ]
 then
   echo 'Version already available on Maven Central.  This must be a rebuild; nothing to do here.'
