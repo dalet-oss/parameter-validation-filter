@@ -1,16 +1,53 @@
-INTRODUCTION
-============
+![parameter-validation-filter](https://raw.githubusercontent.com/dalet-oss/parameter-validation-filter/master/misc/parameter-validation-filter_min.png)
 
-The Parameter Validation Filter (PVF) is a Java library containing a class that implements a Servlet Filter. When this class is configured in the web.xml file of a web application, it can be used to validate and sanitise parameter properties being sent to the application.
+[![CI Build](https://github.com/dalet-oss/parameter-validation-filter/actions/workflows/ci-build.yml/badge.svg)](https://github.com/dalet-oss/parameter-validation-filter/actions/workflows/ci-build.yml) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.dalet-oss/parameter-validation-filter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.dalet-oss/parameter-validation-filter) [![Licence](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/dalet-oss/parameter-validation-filter/blob/master/LICENSE)
+---
+
+## Introduction
+
+The Parameter Validation Filter (PVF) is a Java library containing a class that implements a Servlet Filter. When this
+class is configured in the web.xml file of a web application, it can be used to validate and sanitise parameter
+properties being sent to the application.
 
 This library is based off the idea discussed on the OWASP website at https://www.owasp.org/index.php/How_to_add_validation_logic_to_HttpServletRequest.
 
-You can find a write up of this library at http://java.dzone.com/articles/xss-filter-java-ee-web-apps.
+You can find a write-up of this library at http://java.dzone.com/articles/xss-filter-java-ee-web-apps.
 
-HOW TO USE
-==========
+## Origins
+
+The code in this repo was originally derived from https://github.com/mcasperson/ParameterValidationFilter.  That repo is clearly no longer
+being maintained (at the time of writing, no changes in 5 years, no issue page available, and contributed PRs have been
+ignored).
+
+We have made a number of changes and continue to develop this repo.  To simplify processes such as PRs etc, we now
+maintain this not as a fork of the original project but as a project in its own right.
+
+
+## Builds, releases etc.
+
+This project is built using Github Actions.
+
+-  All pushes to the `master` branch trigger the [![CI Build](https://github.com/dalet-oss/parameter-validation-filter/actions/workflows/ci-build.yml/badge.svg)](https://github.com/dalet-oss/parameter-validation-filter/actions/workflows/ci-build.yml)
+   workflow.
+-  All pushes of Git tags matching `release/*` trigger the [![CI Publish to Maven Central](https://github.com/dalet-oss/parameter-validation-filter/actions/workflows/ci-publish.yml/badge.svg?branch=master&event=push)](https://github.com/dalet-oss/parameter-validation-filter/actions/workflows/ci-publish.yml)
+   workflow.
+
+Published artifacts are available on Maven Central as `com.github.dalet-oss:parameter-validation-filter`.
+
+For the latest version, see https://github.com/dalet-oss/parameter-validation-filter/tags.
+
+#### Note for maintainers:
+
+-  Every push to master gets built, but not published
+-  To publish artifacts, it is necessary to specify a version number by adding an appropriate Git tag to `HEAD` with an
+   appropriate prefix.  For example, tagging HEAD with `release/1.3.8` will cause version `1.3.8` to be published on
+   the next build.
+
+
+## How to Use
 
 Add the following to web.xml:
+
 ```xml
 	<filter>
 		<filter-name>ParameterValidationFilter</filter-name>
@@ -24,8 +61,10 @@ Add the following to web.xml:
 		<filter-name>ParameterValidationFilter</filter-name>
 		<url-pattern>*.jsp</url-pattern>
 	</filter-mapping>
-```	
+```
+
 Create a file called WEB-INF/xml/pvf.xml with the following contents:
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!-- ParameterValidationChainDatabase is always the document element -->
@@ -81,25 +120,22 @@ Create a file called WEB-INF/xml/pvf.xml with the following contents:
 </ParameterValidationChainDatabase>
 ```
 
-FLOWCHART
-=========
+## Flowchart
 
-![flowchart](https://raw.githubusercontent.com/AutoGeneral/ParameterValidationFilter/master/flowchart.png)
+![flowchart](https://raw.githubusercontent.com/dalet-oss/parameter-validation-filter/master/flowchart.png)
 
-DEMO
-====
+## Demo
 
-Go to http://pvftest-matthewcasperson.rhcloud.com/ to see the parameter validation filter is action.
+~~Go to http://pvftest-matthewcasperson.rhcloud.com/ to see the parameter validation filter is action.~~
+This link is no longer available.
 
 The source for the demo can be found at https://github.com/mcasperson/ParameterValidationFilterDemo.
 
-MORE INFORMATION
-================
+## More Information
 
 See https://www.owasp.org/index.php/Parameter_Validation_Filter.
 
-QUICKLY SCANNING LOGS
-=====================
+## Quickly scanning logs
 
 Quite often you'll want to run the PVF in a non-enforcing mode to get an idea of the effect your validation
 rules will have. To quickly scan a log file for the parameters that would fail validation, run the command
