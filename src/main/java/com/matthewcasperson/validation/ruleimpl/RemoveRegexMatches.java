@@ -1,19 +1,20 @@
 package com.matthewcasperson.validation.ruleimpl;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
+import com.matthewcasperson.validation.exception.ValidationFailedException;
+import com.matthewcasperson.validation.rule.ParameterValidationRuleTemplate;
 
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.matthewcasperson.validation.exception.ValidationFailedException;
-import com.matthewcasperson.validation.rule.ParameterValidationRuleTemplate;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 
 /**
  * Strips out ant text that is matched by the supplied regexes. This is useful
  * for custom sanitisation.
- * 
+ *
  * @author mcasperson
  *
  */
@@ -23,7 +24,7 @@ public class RemoveRegexMatches extends ParameterValidationRuleTemplate {
 	private Pattern pattern;
 
 	/**
-	 * 
+	 *
 	 * @return The pattern compiled from the supplied settings
 	 */
 	public Pattern getPattern() {
@@ -31,7 +32,7 @@ public class RemoveRegexMatches extends ParameterValidationRuleTemplate {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param pattern
 	 *            The pattern compiled from the supplied settings
 	 */
@@ -54,18 +55,19 @@ public class RemoveRegexMatches extends ParameterValidationRuleTemplate {
 		checkArgument(!url.trim().isEmpty());
 		checkNotNull(params);
 		checkArgument(params.length != 0, "PVF-BUG-0003: params should always have at least one value");
-		
+
 
 		final String[] retValues = new String[params.length];
 
 		for (int paramIndex = 0, paramLength = params.length; paramIndex < paramLength; ++paramIndex) {
 			final String param = params[paramIndex];
-			
+
 			if (param == null) {
 				retValues[paramIndex] = null;
-			} else {
+			}
+			else {
 				/*
-				 * Loop over the paramater and strip out ever instance of text that 
+				 * Loop over the paramater and strip out ever instance of text that
 				 * matches the regex.
 				 */
 				String fixedString = param;
@@ -76,11 +78,11 @@ public class RemoveRegexMatches extends ParameterValidationRuleTemplate {
 					}
 					fixedString = fixedString.replace(matcher.group(), "");
 				}
-				
+
 				retValues[paramIndex] = fixedString;
 			}
 		}
-		
+
 		return retValues;
 
 	}

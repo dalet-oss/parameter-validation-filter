@@ -2,20 +2,23 @@ package com.matthewcasperson.validation.ruleimpl;
 
 import com.matthewcasperson.validation.exception.ValidationFailedException;
 import com.matthewcasperson.validation.rule.ParameterValidationRuleTemplate;
-import org.owasp.html.*;
+import lombok.extern.slf4j.Slf4j;
+import org.owasp.html.Handler;
+import org.owasp.html.HtmlPolicyBuilder;
+import org.owasp.html.HtmlSanitizer;
+import org.owasp.html.HtmlStreamRenderer;
 
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+
 /**
  * Sanitizes html using the OWASP HTML sanitizer with some common defaults
  */
+@Slf4j
 public class SanitizeHTMLValidationRule extends ParameterValidationRuleTemplate {
-    private static final Logger LOGGER = Logger.getLogger(SanitizeHTMLValidationRule.class.getName());
 
     private static final String A_ELEMENT = "a";
     private static final String HREF_ATTR = "href";
@@ -48,13 +51,14 @@ public class SanitizeHTMLValidationRule extends ParameterValidationRuleTemplate 
 
             if (param == null) {
                 retValues[paramIndex] = null;
-            } else {
+            }
+            else {
                 final StringBuilder sb = new StringBuilder();
                 final HtmlStreamRenderer renderer = HtmlStreamRenderer.create(
                         sb,
                         new Handler<String>() {
                             public void handle(final String errorMessage) {
-                                LOGGER.log(Level.INFO, errorMessage);
+                                log.info(errorMessage);
                             }
                         });
 
@@ -80,4 +84,5 @@ public class SanitizeHTMLValidationRule extends ParameterValidationRuleTemplate 
 
         return retValues;
     }
+
 }

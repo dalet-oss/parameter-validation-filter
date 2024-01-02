@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2014 Matthew Casperson
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,28 +21,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package com.matthewcasperson.validation.ruledefinitionimpl;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
-import java.util.regex.Pattern;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+
 
 /**
  * This class represents a chain of validation operations to be applied to any
  * parameters that match the name regex and which are sent to a page that
  * matches the URI regex.
- * 
- * @author mcasperson
  *
+ * @author mcasperson
  */
 public class ParameterValidationChain {
-	private static final Logger LOGGER = Logger
-			.getLogger(ParameterValidationChain.class.getName());
 
 	private List<ParameterValidationDefinitionImpl> list = new ArrayList<ParameterValidationDefinitionImpl>();
 
@@ -56,7 +51,7 @@ public class ParameterValidationChain {
 	private boolean requestURIPatternNegated;
 
 	/**
-	 * 
+	 *
 	 * @return true if the pattern defined in paramNamePatternString selects
 	 *         params that do not match the pattern, and false otherwise.
 	 */
@@ -65,7 +60,7 @@ public class ParameterValidationChain {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param requestURIPatternNegated
 	 *            true if the pattern defined in paramNamePatternString selects
 	 *            params that do not match the pattern, and false otherwise.
@@ -76,7 +71,7 @@ public class ParameterValidationChain {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return true if the pattern defined in requestURIPatternString selects
 	 *         uris that do not match the pattern, and false otherwise.
 	 */
@@ -85,7 +80,7 @@ public class ParameterValidationChain {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param paramNamePatternNegated
 	 *            true if the pattern defined in requestURIPatternString selects
 	 *            uris that do not match the pattern, and false otherwise.
@@ -95,7 +90,7 @@ public class ParameterValidationChain {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return The string used to create a regex pattern to match request uris
 	 */
 	@XmlElement
@@ -104,7 +99,7 @@ public class ParameterValidationChain {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param requestURIPatternString
 	 *            The string used to create a regex pattern to match request
 	 *            uris
@@ -115,7 +110,7 @@ public class ParameterValidationChain {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return The string used to create a regex pattern to match parameter
 	 *         names
 	 */
@@ -125,7 +120,7 @@ public class ParameterValidationChain {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param paramNamePatternString
 	 *            The string used to create a regex pattern to match parameter
 	 *            names
@@ -136,7 +131,7 @@ public class ParameterValidationChain {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return The Regex that is matched against the name of the param
 	 */
 	public Pattern getParamNamePattern() {
@@ -144,7 +139,7 @@ public class ParameterValidationChain {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return The Regex that is matched against the page being loaded
 	 */
 	public Pattern getRequestURIPattern() {
@@ -152,7 +147,7 @@ public class ParameterValidationChain {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return The list of validation rules to be applied as part of this chain
 	 */
 	@XmlElementWrapper(name = "ParameterValidationRuleList")
@@ -162,7 +157,7 @@ public class ParameterValidationChain {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param list
 	 *            The list of validation rules to be applied as part of this
 	 *            chain

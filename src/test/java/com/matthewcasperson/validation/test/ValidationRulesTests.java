@@ -1,18 +1,18 @@
 /*
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2014 Matthew Casperson
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package com.matthewcasperson.validation.test;
 
 import java.util.HashMap;
@@ -33,7 +32,9 @@ import org.testng.annotations.Test;
 
 import com.matthewcasperson.validation.exception.ValidationFailedException;
 
+
 public class ValidationRulesTests {
+
 	@Test
 	public void testTrim() {
 		try {
@@ -224,48 +225,48 @@ public class ValidationRulesTests {
 		final Map<String, String> settings = new HashMap<String, String>();
 		settings.put("pattern", "[A-Z]+");
 		rule.configure(settings);
-		
+
 		try {
 			rule.fixParam("test", "test", "invalid");
 			Assert.fail();
 		} catch (final ValidationFailedException ex) {
-			
+
 		}
-		
+
 		try {
 			rule.fixParam("test", "test", "VALID");
-			
+
 		} catch (final ValidationFailedException ex) {
 			Assert.fail();
 		}
 	}
-	
+
 	@Test
 	public void testNumberOnly1() {
 		final NumbersOnlyValidationRule rule = new NumbersOnlyValidationRule();
-		
+
 		try {
 			Assert.assertEquals(
 					"123456",
 					rule.fixParam("test", "test", "a123b456c"));
 		} catch (final ValidationFailedException ex) {
-			
+
 		}
 	}
-	
+
 	@Test
 	public void testRegexRemove() {
 		final RemoveRegexMatches rule = new RemoveRegexMatches();
 		final Map<String, String> settings = new HashMap<String, String>();
 		settings.put("pattern", "<!--\\s*I am an invalid comment\\s*-->|<!--\\s*I am a second invalid comment\\s*-->");
 		rule.configure(settings);
-		
+
 		try {
 			Assert.assertEquals(
 					"This should be kept",
 					rule.fixParam("test", "test", "<!-- I am an invalid comment -->This should be kept<!-- I am a second invalid comment -->"));
 		} catch (final ValidationFailedException ex) {
-			
+
 		}
 	}
 

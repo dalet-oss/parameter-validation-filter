@@ -1,11 +1,13 @@
 package com.matthewcasperson.validation.exception;
 
+
 /**
  * Represents an invalid configuration
- * @author mcasperson
  *
+ * @author mcasperson
  */
 public class InvalidConfigurationException extends Exception {
+
 	/**
 	 * Generated serial number
 	 */
@@ -16,10 +18,8 @@ public class InvalidConfigurationException extends Exception {
      * The cause is not initialized, and may subsequently be initialized by a
      * call to {@link #initCause}.
      */
-	public InvalidConfigurationException() {
-		
-	}
-	
+	public InvalidConfigurationException() {}
+
 	/**
 	 * Constructs a new exception with the specified detail message.  The
      * cause is not initialized, and may subsequently be initialized by
@@ -30,7 +30,7 @@ public class InvalidConfigurationException extends Exception {
 	public InvalidConfigurationException(final String message) {
 		super(message);
 	}
-	
+
     /**
      * Constructs a new exception with the specified cause and a detail
      * message of <tt>(cause==null ? null : cause.toString())</tt> (which
@@ -48,4 +48,5 @@ public class InvalidConfigurationException extends Exception {
     public InvalidConfigurationException(final Throwable cause) {
         super(cause);
     }
+
 }

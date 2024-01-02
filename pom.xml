@@ -60,6 +60,7 @@
         <jspApi.version>2.0</jspApi.version>
         <owaspHtmlSanitizer.version>r239</owaspHtmlSanitizer.version>
         <servlet.version>3.1.0</servlet.version>
+        <slf4j.version>1.7.36</slf4j.version>
         <spring.version>4.1.0.RELEASE</spring.version>
 
         <mockito.version>4.11.0</mockito.version>
@@ -156,13 +157,19 @@
 <!--            <version>3.2.1</version>-->
 <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>org.slf4j</groupId>-->
-<!--            <artifactId>slf4j-api</artifactId>-->
-<!--            <version>1.7.36</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
 
         <!-- Provided -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -216,12 +223,17 @@
 <!--            <version>3.24.2</version>-->
 <!--            <scope>test</scope>-->
 <!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.logging.log4j</groupId>-->
-<!--            <artifactId>log4j-slf4j-impl</artifactId>-->
-<!--            <version>2.22.1</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.22.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <!-- To check for plugin updates, uncomment the below and run `mvn org.codehaus.mojo:versions-maven-plugin:2.8.1:display-plugin-updates` -->
