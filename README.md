@@ -1,5 +1,3 @@
-![parameter-validation-filter](https://raw.githubusercontent.com/dalet-oss/parameter-validation-filter/master/misc/parameter-validation-filter_min.png)
-
 [![CI Build](https://github.com/dalet-oss/parameter-validation-filter/actions/workflows/ci-build.yml/badge.svg)](https://github.com/dalet-oss/parameter-validation-filter/actions/workflows/ci-build.yml) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.dalet-oss/parameter-validation-filter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.dalet-oss/parameter-validation-filter) [![Licence](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/dalet-oss/parameter-validation-filter/blob/master/LICENSE)
 ---
 
