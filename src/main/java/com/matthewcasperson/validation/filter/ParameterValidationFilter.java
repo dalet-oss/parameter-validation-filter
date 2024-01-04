@@ -53,7 +53,7 @@ import static com.google.common.base.Preconditions.checkState;
 /**
  * This filter intercepts the parameters sent by the client and cleans them up based on some
  * rules defined in a config file. This means any web application that sits behind this
- * filter can assume that the param object contains sanatised values.
+ * filter can assume that the param object contains sanitised values.
  *
  * @author mcasperson
  */
@@ -63,8 +63,7 @@ public class ParameterValidationFilter implements Filter {
     private static final SerialisationUtils SERIALISATION_UTILS = new JaxBSerialisationUtilsImpl();
 
     /**
-     * This is the init-param name that we expect to hold a reference to the
-     * config xml file.
+     * This is the init-param name that we expect to hold a reference to the config xml file.
      */
     private static final String CONFIG_PARAMETER_NAME = "configFile";
 
@@ -80,7 +79,7 @@ public class ParameterValidationFilter implements Filter {
 
     /**
      * This filter implements multiple chains of validation rules. Each chain is executed against each parameter until
-     * alll validation rules have been executed, or until one of the validation rules stops the execution of the chain.
+     * all validation rules have been executed, or until one of the validation rules stops the execution of the chain.
      */
     @Override
     public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain) throws IOException, ServletException {
@@ -117,9 +116,7 @@ public class ParameterValidationFilter implements Filter {
 
                         log.debug("Parameter Validation Filter processing " + paramName);
 
-                        /*
-                         * Loop over each validation rule in the chain
-                         */
+                        // Loop over each validation rule in the chain
                         final List<ParameterValidationChain> validationChains = parameterValidationDefinitions.getParameterValidationDefinitions();
                         for (final ParameterValidationChain validationChain : validationChains) {
 
@@ -194,22 +191,17 @@ public class ParameterValidationFilter implements Filter {
         catch (final ValidationFailedException ex) {
             // Stop processing and return a HTTP error code if we are enforcing the rules
             if (parameterValidationDefinitions != null && parameterValidationDefinitions.getEnforcingMode()) {
-                respondWithBadRequest(response);
+                handleBadRequest(ex, request, response);
                 return;
             }
         }
         catch (final Exception ex) {
-            /*
-             * We probably reach this because of some invalid state due to rules returning null
-             * or throwing unchecked exceptions during their own processing. This is logged as
-             * severe as it is most likely a bug in the code.
-             */
+            // We probably reach this because of some invalid state due to rules returning null or throwing unchecked
+            // exceptions during their own processing. This is logged as an error, as it is most likely a bug in the
+            // code.
             log.error("Error in parameter validation filter processing", ex);
 
-            /*
-             * Don't allow apps to process raw parameters if this filter has failed and we are
-             * enforcing the rules
-             */
+            // Don't allow apps to process raw parameters if this filter has failed, and we are enforcing the rules
             if (parameterValidationDefinitions != null &&
                     parameterValidationDefinitions.getEnforcingMode()) {
                 respondWithBadRequest(response);
@@ -229,9 +221,23 @@ public class ParameterValidationFilter implements Filter {
     }
 
     /**
-     * Return with a status code of 400
+     * This method may be overridden to customise the response to invalid parameters.
      *
-     * @param response The servlet request
+     * @param exception which was thrown during parameter validation
+     * @param request HTTP servlet request
+     * @param response HTTP servlet response
+     */
+    protected void handleBadRequest(final ValidationFailedException exception,
+                                    final ServletRequest request,
+                                    final ServletResponse response) {
+
+        respondWithBadRequest(response);
+    }
+
+    /**
+     * Return with a status code of 400.
+     *
+     * @param response The servlet response
      */
     private void respondWithBadRequest(final ServletResponse response) {
 

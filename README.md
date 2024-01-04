@@ -120,7 +120,7 @@ Create a file called WEB-INF/xml/pvf.xml with the following contents:
 
 ## Flowchart
 
-![flowchart](https://raw.githubusercontent.com/dalet-oss/parameter-validation-filter/master/flowchart.png)
+![flowchart](flowchart.png)
 
 ## Demo
 

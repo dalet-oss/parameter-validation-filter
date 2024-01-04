@@ -30,7 +30,7 @@ package com.matthewcasperson.validation.exception;
  *
  * @author mcasperson
  */
-public class ValidationFailedException extends Exception {
+public class ValidationFailedException extends RuntimeException {
 
 	/**
 	 * Generated serial number
