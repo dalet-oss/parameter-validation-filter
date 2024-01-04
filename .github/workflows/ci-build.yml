@@ -5,9 +5,13 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    types: [ opened, reopened, edited ]
+    branches:
+      - master
 
 concurrency:
-  group: '${{ github.workflow }} @ ${{ github.head_ref || github.ref }}'
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
   cancel-in-progress: false
 
 jobs:
