@@ -45,21 +45,19 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
-        <apacheCommonsIO.version>2.15.1</apacheCommonsIO.version>
-        <apacheCommonsText.version>1.11.0</apacheCommonsText.version>
-        <guava.version>33.0.0-jre</guava.version>
+        <apacheCommonsIO.version>2.21.0</apacheCommonsIO.version>
+        <apacheCommonsText.version>1.15.0</apacheCommonsText.version>
+        <guava.version>33.5.0-jre</guava.version>
         <slf4j.version>1.7.36</slf4j.version>
 
-        <!-- TODO: upgrade to 2.5.3.1 and remove any exclusions that are no longer necessary -->
-        <esapi.version>2.1.0</esapi.version>
-        <!-- TODO: upgrade? -->
-        <jspApi.version>2.0</jspApi.version>
-        <!-- TODO: upgrade to 20220608.1 and remove any exclusions that are no longer necessary -->
-        <owaspHtmlSanitizer.version>r239</owaspHtmlSanitizer.version>
-        <!-- TODO: upgrade? -->
+        <esapi.version>2.7.0.0</esapi.version>
+        <owaspHtmlSanitizer.version>20240325.1</owaspHtmlSanitizer.version>
+
+        <!-- TODO: upgrade these javax to jakarta when going to Spring-Boot 3 in Enterprise -->
+        <jspApi.version>2.3.3</jspApi.version>
         <servlet.version>3.1.0</servlet.version>
 
-        <junit.version>5.10.1</junit.version>
+        <junit.version>5.14.1</junit.version>
         <mockito.version>4.11.0</mockito.version>
 
         <revision>DEV</revision>
@@ -89,12 +87,6 @@
             <groupId>org.owasp.esapi</groupId>
             <artifactId>esapi</artifactId>
             <version>${esapi.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -115,16 +107,6 @@
             <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
             <artifactId>owasp-java-html-sanitizer</artifactId>
             <version>${owaspHtmlSanitizer.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.google.code.findbugs</groupId>
-                    <artifactId>jsr305</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
@@ -137,7 +119,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
+            <version>1.18.42</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -147,8 +129,8 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jsp-api</artifactId>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
             <version>${jspApi.version}</version>
             <scope>provided</scope>
         </dependency>
@@ -172,12 +154,12 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.22.1</version>
+            <version>2.25.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
-    <!-- To check for plugin updates, uncomment the below and run `mvn org.codehaus.mojo:versions-maven-plugin:2.8.1:display-plugin-updates` -->
+    <!-- To check for plugin updates, uncomment the below and run `mvn org.codehaus.mojo:versions-maven-plugin:2.20.1:display-plugin-updates` -->
     <!--  <prerequisites>-->
     <!--    <maven>3.8.8</maven>  &lt;!&ndash; This is the version used by Github Actions at present &ndash;&gt;-->
     <!--  </prerequisites>-->
@@ -231,7 +213,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>3.3.1</version>
+                        <version>3.4.0</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
