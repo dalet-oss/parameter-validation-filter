@@ -56,6 +56,7 @@
         <!-- TODO: upgrade these javax to jakarta when going to Spring-Boot 3 in Enterprise -->
         <jspApi.version>2.3.3</jspApi.version>
         <servlet.version>3.1.0</servlet.version>
+        <jaxb.version>2.3.1</jaxb.version>
 
         <junit.version>5.14.1</junit.version>
         <mockito.version>4.11.0</mockito.version>
@@ -113,6 +114,18 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+
+        <!-- JAXB dependencies for Java 11+ -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jaxb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>${jaxb.version}</version>
         </dependency>
 
         <!-- Provided -->
