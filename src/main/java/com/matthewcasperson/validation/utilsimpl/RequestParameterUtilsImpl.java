@@ -24,9 +24,8 @@
 package com.matthewcasperson.validation.utilsimpl;
 
 import com.matthewcasperson.validation.utils.RequestParameterUtils;
-
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;

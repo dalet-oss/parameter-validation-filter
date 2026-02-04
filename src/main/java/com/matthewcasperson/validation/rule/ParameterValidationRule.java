@@ -24,8 +24,8 @@
 package com.matthewcasperson.validation.rule;
 
 import com.matthewcasperson.validation.exception.ValidationFailedException;
+import jakarta.servlet.ServletRequest;
 
-import javax.servlet.ServletRequest;
 import java.util.Map;
 
 
