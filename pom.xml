@@ -41,8 +41,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
 
         <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
         <apacheCommonsIO.version>2.21.0</apacheCommonsIO.version>
@@ -53,10 +53,9 @@
         <esapi.version>2.7.0.0</esapi.version>
         <owaspHtmlSanitizer.version>20240325.1</owaspHtmlSanitizer.version>
 
-        <!-- TODO: upgrade these javax to jakarta when going to Spring-Boot 3 in Enterprise -->
-        <jaxb.version>2.3.9</jaxb.version>
-        <jspApi.version>2.3.3</jspApi.version>
-        <servlet.version>3.1.0</servlet.version>
+        <jaxb.version>4.0.6</jaxb.version>
+        <jspApi.version>3.1.1</jspApi.version>
+        <servlet.version>6.0.0</servlet.version>
 
         <junit.version>5.14.1</junit.version>
         <mockito.version>4.11.0</mockito.version>
@@ -88,6 +87,7 @@
             <groupId>org.owasp.esapi</groupId>
             <artifactId>esapi</artifactId>
             <version>${esapi.version}</version>
+            <classifier>jakarta</classifier>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -131,14 +131,14 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
             <version>${servlet.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>javax.servlet.jsp-api</artifactId>
+            <groupId>jakarta.servlet.jsp</groupId>
+            <artifactId>jakarta.servlet.jsp-api</artifactId>
             <version>${jspApi.version}</version>
             <scope>provided</scope>
         </dependency>

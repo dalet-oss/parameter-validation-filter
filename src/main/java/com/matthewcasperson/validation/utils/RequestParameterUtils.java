@@ -24,8 +24,8 @@
 
 package com.matthewcasperson.validation.utils;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * Util methods for getting params from a servlet request

@@ -26,10 +26,10 @@ package com.matthewcasperson.validation.rule;
 import com.matthewcasperson.validation.exception.ValidationFailedException;
 import com.matthewcasperson.validation.utils.RequestParameterUtils;
 import com.matthewcasperson.validation.utilsimpl.RequestParameterUtilsImpl;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import java.util.Arrays;
 import java.util.Map;
 

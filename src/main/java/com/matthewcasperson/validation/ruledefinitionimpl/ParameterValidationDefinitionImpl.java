@@ -25,9 +25,9 @@ package com.matthewcasperson.validation.ruledefinitionimpl;
 
 import com.matthewcasperson.validation.exception.InvalidConfigurationException;
 import com.matthewcasperson.validation.rule.ParameterValidationRule;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
