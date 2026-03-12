@@ -51,7 +51,7 @@
         <slf4j.version>1.7.36</slf4j.version>
 
         <esapi.version>2.7.0.0</esapi.version>
-        <owaspHtmlSanitizer.version>20240325.1</owaspHtmlSanitizer.version>
+        <owaspHtmlSanitizer.version>20260101.1</owaspHtmlSanitizer.version>
 
         <jaxb.version>4.0.6</jaxb.version>
         <jspApi.version>3.1.1</jspApi.version>
